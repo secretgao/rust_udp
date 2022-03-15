@@ -1,5 +1,6 @@
 # rust_udp
 #### demo 教程
+* cargo run 
 * 开启两个命令行终端 进入cd target/debug 目录
 * 一个终端执行
 ```shell
