@@ -37,9 +37,11 @@ fn main(){
     s.push(5);
     println!("s :{:#?}",s);
     println!("================");
-    println!("s pop :{:#?}",s.pop());
-    println!("s pop :{:#?}",s.pop());
-    println!("s pop :{:#?}",s.pop());
-    println!("s pop :{:#?}",s.pop());
-    println!("s pop :{:#?}",s.pop());
+    for _ in 0..4{
+        if let Some(data) = s.pop(){
+            println!("data :{}",data);
+        } else {
+            println!("stack empty");
+        }
+    }
 }
