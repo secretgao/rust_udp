@@ -1,16 +1,24 @@
 #[derive(Debug)]
 struct Queue<T>{
     qdata:Vec<T>,
+    capacity:usize,
 }
 
 impl <T> Queue<T> {
     //初始化
-    fn new() -> Self{
-        Queue{qdata:Vec::new()}
+    fn new(size:usize) -> Self{
+        Queue{
+            qdata:Vec::with_capacity(size),
+            capacity:size,
+        }
     }
     //入队
-    fn enqueue(&mut self,value:T){
+    fn enqueue(&mut self,value:T)->Result<(),String>{
+        if self.qdata.len() == self.capacity{
+            return Err("No space in queue".to_string());
+        }
         self.qdata.push(value);
+        Ok(())
     }
     //出队
     fn dequeue(&mut self,)->Option<T>{
@@ -30,10 +38,12 @@ impl <T> Queue<T> {
 
 fn main(){
 
-    let mut q = Queue::new();
+    let mut q = Queue::new(2);
     q.enqueue(1);
     q.enqueue(2);
-    q.enqueue(3);
+    if let Err(error) =q.enqueue(3){
+        println!("queue error :{}",error);
+    }
 
     let len = q.size();
     println!("queue len:{} queue{:?}",len,q);
